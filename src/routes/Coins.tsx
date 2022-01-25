@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { fetchCoins } from '../api'
+import { Helmet } from 'react-helmet'
 
 const Container = styled.div`
     padding: 0px 20px;
@@ -79,29 +80,34 @@ function Coins() {
     //         setLoading(false);
     //     })();
     // }, [])
-    return <Container>
-        <Header>
-            <Title>코인</Title>
-        </Header>
-        {isLoading 
-            ? <Loader>Loading...</Loader> 
-            : <CoinsList>
-                {data?.slice(0, 100).map(coin => 
-                    <Coin key={coin.id}>
-                        <Link to={{
-                            pathname: `/${coin.id}`,
-                            state: {name: coin.name},
-                        }}>
-                            <Img 
-                                src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} 
-                            />
-                            {coin.name} &rarr;
-                        </Link>
-                    </Coin>
-                )}
-            </CoinsList>
-        }
-    </Container>
+    return (
+        <Container>
+            <Helmet>
+                <title>코인</title>
+            </Helmet>
+            <Header>
+                <Title>코인</Title>
+            </Header>
+            {isLoading 
+                ? <Loader>Loading...</Loader> 
+                : <CoinsList>
+                    {data?.slice(0, 100).map(coin => 
+                        <Coin key={coin.id}>
+                            <Link to={{
+                                pathname: `/${coin.id}`,
+                                state: {name: coin.name},
+                            }}>
+                                <Img 
+                                    src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} 
+                                />
+                                {coin.name} &rarr;
+                            </Link>
+                        </Coin>
+                    )}
+                </CoinsList>
+            }
+        </Container>
+    )
 }
 
 export default Coins;
