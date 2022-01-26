@@ -19,20 +19,19 @@ const Header = styled.header`
     /* width: 38vh; */
     height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 `
 
 const FontAwesomeExt = styled(FontAwesomeIcon)`
     font-size: 25px;
-    position: relative;
-    right: 25vh;
     &:hover {
         color: ${props => props.theme.accentcolor};
     }
 `
 
 const Title = styled.h1`
+    width: auto;
     font-size: 28px;
     color: ${props => props.theme.accentcolor};
 `
@@ -204,10 +203,11 @@ function Coin() {
                 </title>
             </Helmet>
             <Header>
-                <Title>{state?.name ? state.name : Loading ? "Loading..." : infoData?.name}</Title>
                 <Link to={{pathname: '/'}}>
                     <FontAwesomeExt icon={faChevronLeft} />
                 </Link>
+                <Title>{state?.name ? state.name : Loading ? "Loading..." : infoData?.name}</Title>
+                <div></div>
             </Header>
             {
                 Loading 
