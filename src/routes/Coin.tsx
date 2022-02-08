@@ -44,7 +44,7 @@ const Loader = styled.span`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${props => props.theme.cardColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
@@ -63,6 +63,7 @@ const OverviewItem = styled.div`
 
 const Description = styled.p`
   margin: 20px 0px;
+  color: ${props => props.theme.textColor};
 `;
 
 const Tabs = styled.div`
@@ -77,7 +78,7 @@ const Tab = styled.span<{isActive: boolean}>`
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 400;
-    background-color: rgba(0,0,0,0.5);
+    background-color: ${props => props.theme.cardColor};
     padding: 7px 0px;
     border-radius: 10px;
     color: ${props => props.isActive ? props.theme.accentcolor : props.theme.textColor};
@@ -149,7 +150,6 @@ interface PriceData {
         }
     };
 }
-
 function Coin() {
     const {coinId} = useParams<RouteParams>();
     const {state}  = useLocation<RouteState>();
@@ -216,27 +216,27 @@ function Coin() {
                     <>
                         <Overview>
                             <OverviewItem>
-                            <span>Rank:</span>
-                            <span>{infoData?.rank}</span>
+                                <span>Rank:</span>
+                                <span>{infoData?.rank}</span>
                             </OverviewItem>
                             <OverviewItem>
-                            <span>Symbol:</span>
-                            <span>${infoData?.symbol}</span>
+                                <span>Symbol:</span>
+                                <span>${infoData?.symbol}</span>
                             </OverviewItem>
                             <OverviewItem>
-                            <span>Price:</span>
-                            <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
+                                <span>Price:</span>
+                                <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
                             </OverviewItem>
                         </Overview>
                         <Description>{infoData?.description}</Description>
                         <Overview>
                             <OverviewItem>
-                            <span>Total Suply:</span>
-                            <span>{tickersData?.total_supply}</span>
+                                <span>Total Suply:</span>
+                                <span>{tickersData?.total_supply}</span>
                             </OverviewItem>
                             <OverviewItem>
-                            <span>Max Supply:</span>
-                            <span>{tickersData?.max_supply}</span>
+                                <span>Max Supply:</span>
+                                <span>{tickersData?.max_supply}</span>
                             </OverviewItem>
                         </Overview>
                         <Tabs>
